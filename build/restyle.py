@@ -285,5 +285,16 @@ for old, new in JS:
     assert old in html, "패치 대상 없음: " + old[:60]
     html = html.replace(old, new, 1)
 
+# 5) 구단 가나다순 정렬
+SORT_OLD = "for(const k in CLUBS)CLUBS[k].accent=ACC[k]||'#5b8cff';"
+SORT_NEW = "for(const k in CLUBS)CLUBS[k].accent=ACC[k]||'#5b8cff';\n// 구단 가나다순 정렬 (카드·비교표·최신화 순서 모두 이 순서를 따름)\nfor(const k of Object.keys(CLUBS).sort((a,b)=>CLUBS[a].name.localeCompare(CLUBS[b].name,'ko'))){const v=CLUBS[k];delete CLUBS[k];CLUBS[k]=v}"
+if SORT_NEW not in html:
+    assert SORT_OLD in html, "패치 대상 없음: 구단 정렬"
+    html = html.replace(SORT_OLD, SORT_NEW, 1)
+
+# 4) 허브 하단 안내문(기준일·승률 계산 설명) 삭제
+HUB_NOTE = " H.appendChild($('div','note','※ 넥스트플레이어 클럽 페이지 기준. 기준일: '+Object.values(CLUBS).map(c=>`${c.name} ${c.asof}`).join(', ')+'. 승률 = 승 ÷ 경기(무승부 포함). 승부차기는 무승부로 계산했습니다.'));\n"
+html = html.replace(HUB_NOTE, "")
+
 path.write_text(html, encoding="utf-8", newline="\n")
 print("restyled:", path)
