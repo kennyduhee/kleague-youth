@@ -23,7 +23,7 @@ body{margin:0;color:var(--ink);font-family:"Pretendard Variable","Pretendard","A
 ::selection{background:var(--gold);color:#111}
 
 /* ---------- header ---------- */
-header{position:relative;overflow:hidden;color:#fff;padding:30px 24px 18px;border-bottom:1px solid var(--line);
+header{position:relative;overflow:hidden;overflow:clip;color:#fff;padding:30px 24px 18px;border-bottom:1px solid var(--line);
  background:linear-gradient(180deg,rgba(9,13,21,0) 40%,rgba(9,13,21,.85) 100%),radial-gradient(800px 300px at 20% -20%,color-mix(in srgb,var(--acc) 40%,transparent),transparent 70%),#0b1120}
 body[data-club] header{background:linear-gradient(180deg,rgba(9,13,21,.05) 0%,rgba(9,13,21,.9) 100%),var(--grad)}
 header::after{content:"";position:absolute;right:-120px;top:-160px;width:420px;height:420px;border-radius:50%;border:60px solid rgba(255,255,255,.035);pointer-events:none}
@@ -54,7 +54,7 @@ main,.hubwrap{max-width:1280px;margin:0 auto;padding:24px}
 .sh-head .src{margin-left:auto;font-size:11.5px}
 
 /* ---------- 2026 hero ---------- */
-.y26{position:relative;overflow:hidden;background:var(--grad,linear-gradient(140deg,#0f1d3d,#2b4583));color:#fff;border-radius:24px;padding:24px;margin-bottom:18px;
+.y26{position:relative;overflow:hidden;overflow:clip;background:var(--grad,linear-gradient(140deg,#0f1d3d,#2b4583));color:#fff;border-radius:24px;padding:24px;margin-bottom:18px;
  border:1px solid rgba(245,196,81,.45);box-shadow:0 0 0 4px rgba(245,196,81,.06),0 30px 60px -25px rgba(0,0,0,.8)}
 .y26::before{content:"";position:absolute;inset:0;background:radial-gradient(600px 260px at 100% 0%,rgba(255,255,255,.12),transparent 60%),repeating-linear-gradient(115deg,rgba(255,255,255,.02) 0 2px,transparent 2px 14px);pointer-events:none}
 .y26>*{position:relative}
@@ -147,7 +147,7 @@ tr.c26 td.n{box-shadow:inset 3px 0 0 var(--gold)}
 .club:nth-child(2){animation-delay:.06s}.club:nth-child(3){animation-delay:.12s}.club:nth-child(4){animation-delay:.18s}
 .club:hover{transform:translateY(-5px);border-color:color-mix(in srgb,var(--acc) 55%,transparent);box-shadow:0 24px 50px -20px color-mix(in srgb,var(--acc) 55%,transparent),0 10px 30px -10px rgba(0,0,0,.6)}
 .club:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
-.chead{position:relative;overflow:hidden;color:#fff;padding:20px 18px;display:flex;align-items:center;gap:14px}
+.chead{position:relative;overflow:hidden;overflow:clip;color:#fff;padding:20px 18px;display:flex;align-items:center;gap:14px}
 .chead::after{content:"";position:absolute;right:-50px;top:-60px;width:190px;height:190px;border-radius:50%;border:28px solid rgba(255,255,255,.06);pointer-events:none}
 .crest{width:52px;height:52px;border-radius:50%;background:rgba(0,0,0,.25);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex:none;box-shadow:0 0 0 4px rgba(245,196,81,.12)}
 .chead h3{margin:0;font-size:21px;font-weight:850;letter-spacing:-.4px}.chead small{display:block;color:rgba(255,255,255,.7);font-size:12px;margin-top:3px}
