@@ -1,6 +1,6 @@
 import json, re, sys, importlib
 sys.path.insert(0,'/home/claude')
-import data as E, data_seoul as S
+import data as E, data_seoul as S, data_seongnam as SN
 src=open('/home/claude/build.py',encoding='utf-8').read()
 tpl=src[src.index('html = r"""')+len('html = r"""'):src.index('"""',src.index('html = r"""')+12)]
 lines=tpl.split('\n')
@@ -15,11 +15,15 @@ eland_note=base_note
 seoul_note=base_note.replace("2020년 U12, 코로나 등으로 기록이 없는 연도는 표시되지 않습니다.","기록이 없는 연도(예: U12 2020년)는 표시되지 않습니다. U14는 2020~2025년 서울오산중 U14(팀 7580)와 2026년 FC서울 U14(팀 7381) 기록을 이어 붙였고, U15는 FC서울 U15(오산중, 팀 3166) 기록입니다. U12의 “2팀 추정” 리그는 같은 팀 ID로 두 권역에 동시 출전한 기록으로, 연도 합계에 함께 들어 있습니다.")
 assert seoul_note!=base_note
 
+sn_note=base_note.replace("2020년 U12, 코로나 등으로 기록이 없는 연도는 표시되지 않습니다.","기록이 없는 연도(예: U12 2020년)는 표시되지 않습니다. U14·U15는 성남FC U15, U17·U18은 풍생고 기록입니다.")
+assert sn_note!=base_note
 CLUBS={
  "eland":{"name":"서울이랜드FC","short":"이랜드","asof":"2026-11-14","c1":"#14254a","c2":"#24407a","grad":"linear-gradient(140deg,#0f1d3d 0%,#1c3266 60%,#2b4583 100%)",
    "feeder":"U15 · U18: 서울이랜드FC U15·U18","D":E.D,"sheets":[list(x) for x in E.SHEETS],"note":eland_note},
  "fcseoul":{"name":"FC서울","short":"FC서울","asof":"2026-11-16","c1":"#1a1a1a","c2":"#b5121b","grad":"linear-gradient(140deg,#0d0d0d 0%,#3a0a0e 55%,#8f1018 100%)",
    "feeder":"U14 · U15: 오산중 / U17 · U18: 오산고","D":S.D,"sheets":[list(x) for x in S.SHEETS],"note":seoul_note},
+ "seongnam":{"name":"성남FC","short":"성남","asof":"2026-11-18","c1":"#121417","c2":"#3b4652","grad":"linear-gradient(140deg,#0b0c0e 0%,#1f252c 55%,#3b4652 100%)",
+   "feeder":"U17 · U18: 풍생고","D":SN.D,"sheets":[list(x) for x in SN.SHEETS],"note":sn_note},
 }
 
 # --- header & CSS
