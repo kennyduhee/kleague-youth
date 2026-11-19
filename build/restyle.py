@@ -251,20 +251,20 @@ JS = [
     ("sub.style.cssText='font-size:10.5px;color:#8a90a0'", "sub.style.cssText='font-size:10.5px;color:#6f7a90'"),
     # 허브 막대
     ("sp.style.background=wr>=60?'#2f7d4f':wr>=40?'#c9a24a':'#c0453a';",
-     "sp.style.background=wr>=60?'#22c55e':wr>=40?'#f5c451':'#ef4444';sp.style.color=sp.style.background;"),
-    ("w.style.color=wr>=60?'#2f7d4f':wr>=40?'#9a7413':'#c0453a';", "w.style.color=wr>=60?'#4ade80':wr>=40?'#f5c451':'#f87171';"),
-    # 비교표: 승률 구간 색 (60%↑ 초록 / 40%↑ 금색 / 그 아래 빨강) + 누적 승률도 색
+     "sp.style.background=wr>=70?'#22c55e':wr>=30?'#f5c451':'#ef4444';sp.style.color=sp.style.background;"),
+    ("w.style.color=wr>=60?'#2f7d4f':wr>=40?'#9a7413':'#c0453a';", "w.style.color=wr>=70?'#4ade80':wr>=30?'#f5c451':'#f87171';"),
+    # 비교표: 승률 구간 색 (70%↑ 초록 / 30%↑ 금색 / 그 아래 빨강) + 누적 승률도 색
     ("vals.forEach(v=>{const td=$('td',v&&v.w===mx&&keys.length>1?'best':null,v?v.txt:'-');tr.appendChild(td)});",
      "vals.forEach(v=>{const td=$('td',v&&v.w===mx&&keys.length>1?'best':null);"
      "if(v&&v.w!=null){const g=wrCls(v.w);td.classList.add(g);const m=v.txt.match(/^\\d+% · (.*) \\((\\d+)%\\)$/);"
      "td.append($('span','wrp '+g,v.w+'%'),document.createTextNode(m?m[1]+' ':v.txt));if(m){const cu=$('span','cum','누적 ');cu.appendChild($('b',null,m[2]+'%'));cu.lastChild.style.color=wrCol(+m[2]);td.appendChild(cu)}}"
      "else td.textContent=v?v.txt:'-';tr.appendChild(td)});"),
     ("tb.appendChild(bd);box.appendChild(tb);H.appendChild(box);",
-     "tb.appendChild(bd);box.appendChild(tb);const lg=$('div','leg');[['hi','60% 이상'],['mid','40~59%'],['lo','40% 미만']].forEach(([c,t])=>lg.appendChild($('span','wrp '+c,t)));lg.appendChild($('span',null,'👑 연령별 2026 최고 승률 구단'));box.appendChild(lg);H.appendChild(box);"),
+     "tb.appendChild(bd);box.appendChild(tb);const lg=$('div','leg');[['hi','70% 이상'],['mid','30~69%'],['lo','30% 미만']].forEach(([c,t])=>lg.appendChild($('span','wrp '+c,t)));lg.appendChild($('span',null,'👑 연령별 2026 최고 승률 구단'));box.appendChild(lg);H.appendChild(box);"),
     # 팀별 최고 시즌: 5경기 이상 시즌 중 승률 → 승 수 → 득실차 순
     ("const pct=(w,p)=>p?Math.round(w/p*100):0;",
      "const pct=(w,p)=>p?Math.round(w/p*100):0;\n"
-     "const wrCls=w=>w>=60?'hi':w>=40?'mid':'lo',wrCol=w=>w>=60?'#4ade80':w>=40?'#f5c451':'#f87171';\n"
+     "const wrCls=w=>w>=70?'hi':w>=30?'mid':'lo',wrCol=w=>w>=70?'#4ade80':w>=30?'#f5c451':'#f87171';\n"
      "const bestYear=T=>{const c=T.years.filter(y=>y[1]>=5),L=c.length?c:T.years,k=y=>[pct(y[2],y[1]),y[2],y[5]-y[6]];"
      "return L.reduce((b,y)=>{const a=k(y),q=k(b);for(let i=0;i<3;i++)if(a[i]!==q[i])return a[i]>q[i]?y:b;return b})};"),
     ("teams.forEach(t=>{const T=D[t];const box=$('div','tbox');",
