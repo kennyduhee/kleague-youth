@@ -113,6 +113,8 @@ def season(tid, ag, yr, old):
         start = md(ds[0]) if ds else ""
         prev = next((o for o in oc if o[0] == ty and o[9].split("~")[0] == start), None)
         name = prev[1] if prev else (np_name(ty, raw) if raw else f"{'리그' if ty == 'L' else '대회'} #{g['id']}")
+        if not prev and ag in ("U14", "U15"):
+            name = name.replace("고등", "중등")   # 넥스트플레이어가 중등 리그를 '고등'으로 잘못 표기한 경우 (예: 2026 U14 전반기)
         if prev and res and sort_res(prev[2].split("/")) == sort_res(res.split("/")):
             res = prev[2]
         comps.append((ds[0] if ds else "", [ty, name, res or (prev[2] if prev else "-"), len(ms), w, dr, len(ms) - w - dr,
