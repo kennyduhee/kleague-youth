@@ -140,6 +140,7 @@ tr.c26 td.n{box-shadow:inset 3px 0 0 var(--gold)}
 /* ---------- hub ---------- */
 #hub{display:none}body:not(.detail) #hub{display:block}body:not(.detail) #main{display:none}
 .hub-intro{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;margin:6px 0 18px}
+.hub-intro h2 .sortnote{font-size:14px;font-weight:600;color:var(--mute);letter-spacing:0}
 .hub-intro h2{margin:0;font-size:24px;font-weight:850;letter-spacing:-.5px;color:var(--ink)}.hub-intro span{color:var(--mute);font-size:13px}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:18px;margin-bottom:22px}
 .club{position:relative;background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;
@@ -291,6 +292,13 @@ SORT_NEW = "for(const k in CLUBS)CLUBS[k].accent=ACC[k]||'#5b8cff';\n// 구단 �
 if SORT_NEW not in html:
     assert SORT_OLD in html, "패치 대상 없음: 구단 정렬"
     html = html.replace(SORT_OLD, SORT_NEW, 1)
+
+# 6) 허브 제목 옆 (가나다순) 표기
+LBL_OLD = "$('h2',null,'구단 한눈에 보기')"
+LBL_NEW = "(()=>{const h=$('h2',null,'구단 한눈에 보기 ');h.appendChild($('small','sortnote','(가나다순)'));return h})()"
+if LBL_NEW not in html:
+    assert LBL_OLD in html, "패치 대상 없음: 가나다순 표기"
+    html = html.replace(LBL_OLD, LBL_NEW, 1)
 
 # 4) 허브 하단 안내문(기준일·승률 계산 설명) 삭제
 HUB_NOTE = " H.appendChild($('div','note','※ 넥스트플레이어 클럽 페이지 기준. 기준일: '+Object.values(CLUBS).map(c=>`${c.name} ${c.asof}`).join(', ')+'. 승률 = 승 ÷ 경기(무승부 포함). 승부차기는 무승부로 계산했습니다.'));\n"
