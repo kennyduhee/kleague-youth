@@ -1,0 +1,5 @@
+build/
+.claude/
+*.txt
+*.md
+*.py
